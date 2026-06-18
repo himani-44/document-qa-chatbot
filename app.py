@@ -2,8 +2,6 @@ import os
 import streamlit as st
 import google.generativeai as genai
 
-from dotenv import load_dotenv
-
 from utils.pdf_processor import (
     extract_text_from_pdf,
     chunk_text
@@ -20,12 +18,12 @@ from utils.rag_pipeline import (
     generate_answer
 )
 
-load_dotenv(dotenv_path=".env", override=True)
+# Gemini API Key from Streamlit Secrets
+genai.configure(
+    api_key=st.secrets["GEMINI_API_KEY"]
+)
 
-key = os.getenv("GEMINI_API_KEY")
-
-genai.configure(api_key=key)
-
+# Create folders if they don't exist
 os.makedirs("uploads", exist_ok=True)
 os.makedirs("vectorstore", exist_ok=True)
 
