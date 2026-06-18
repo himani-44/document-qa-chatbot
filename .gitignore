@@ -1,0 +1,12 @@
+venv/
+.env
+uploads/
+vectorstore/
+vectorscore/
+
+__pycache__/
+*.pyc
+
+test_rag.py
+text_gemini.py
+list_models.py
